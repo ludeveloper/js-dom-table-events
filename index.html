@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      td,
+      th {
+        border: 1px solid black;
+        width: 25px;
+      }
+      th {
+        border: solid 1px black;
+      }
+      th.borderless {
+        border: none;
+        width: 10px;
+      }
+    </style>
+  </head>
+  <body onload="addRow()">
+    <table id="myTable">
+      <tr>
+        <th class="borderless"></th>
+        <th>H#1</th>
+        <th>H#2</th>
+        <th>H#3</th>
+      </tr>
+    </table>
+    <br />
+
+    <button type="button" onclick="addRow()">Add a new row</button>
+
+    <button type="button" onclick="delRow()">Delete the first row</button>
+
+    <ul>
+      <li>Header is static.</li>
+      <li>First row and its values are generated with onload event</li>
+      <li>Numbers are random between 0-100</li>
+      <li>
+        Click 'Add' button to add a new row at the end of the table and then add
+        cells and content.
+      </li>
+      <li>Click 'Delete' button to delete the existing first row</li>
+    </ul>
+
+    <script>
+      function callRandom() {
+        cell3.innerHTML = Math.floor(Math.random() * 100);
+      }
+      function addRow() {
+        var tr = document.getElementsByTagName("tr");
+
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(-1);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        cell0.innerHTML = tr.length - 1;
+        cell1.innerHTML = Math.floor(Math.random() * 100);
+        cell2.innerHTML = Math.floor(Math.random() * 100);
+        cell3.innerHTML = Math.floor(Math.random() * 100);
+
+        colorify();
+      }
+
+      function delRow() {
+        var table = document.getElementById("myTable");
+        var row = table.deleteRow(1);
+
+        colorify();
+      }
+
+      function colorify() {
+        var tr = document.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+          if (i != 0) {
+            tr[i].childNodes[0].innerHTML = i;
+          }
+
+          if (i % 2 == 1) {
+            tr[i].style.backgroundColor = "yellow";
+          } else {
+            tr[i].style.backgroundColor = "white";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
